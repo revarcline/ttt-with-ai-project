@@ -1,3 +1,26 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts 'Would you like to play a game?'
+puts '1) Man vs. Man'
+puts '2) Man vs. Machine'
+puts '3) Machine vs. Machine'
+
+mode = gets.chomp
+menu = true
+while menu
+  case mode
+  when '1'
+    menu = false
+    tic = Game.new
+  when '2'
+    menu = false
+    tic = Game.new(Players::Human.new('X'), Players::Computer.new('O'))
+  when '3'
+    menu = false
+    tic = Game.new(Players::Computer.new('X'), Players::Computer.new('O'))
+  end
+end
+
+tic.play until tic.won?
